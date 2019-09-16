@@ -1,5 +1,5 @@
 <div align="center">
-<img src="https://aeserna.com/img/new-balance.jpg" alt="nb-logo" style="border:5px solid black">
+<img src="https://www.joesnewbalanceoutlet.com/Content/images/logo.png" alt="nb-logo" style="border:5px solid black">
 </div>
 
 <h1 align="center">Joe's New Balance Shoe Tracker Script</h1>
@@ -13,6 +13,7 @@ Joe's NB Outlet
 - Checks for price changes (+/-)
 - Checks for new shoe arrivals
 - Checks for shoe removals
+- Exports into .csv file
 
 
 ## 📦 Installation & Setup
