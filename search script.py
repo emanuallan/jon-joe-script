@@ -39,17 +39,31 @@ def CheckProducts(URL):
         ############ WEB SCRAPE ##############
         ######################################
 
-        driver = webdriver.Chrome(executable_path='/Users/allanserna/Downloads/chromedriver') #initializes the chrome page
+        driver = webdriver.Chrome(executable_path='/Users/allanserna/Desktop/jon-joe-script/chromedriver') #initializes the chrome page
         driver.get(URL) 
-        WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.CLASS_NAME, "productChips")))
+        WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.CLASS_NAME, "productPriceContainer")))
         items = driver.find_elements_by_class_name("impression")
+        items_prices = driver.find_elements_by_class_name("productPrice")
 
         newDictionary = {}
         for x in range (len(items)):
             if (x % 2 == 0):
                 product_name = items[x].get_attribute('data-productname')
-                product_price = float(items[x].get_attribute('data-price')) * 0.6
+                # product_price = float(items[x].get_attribute('data-price')) #*0.6
                 product_code = items[x].get_attribute('data-productcode')
+                product_pr = items_prices[int(x / 2)].get_attribute('innerHTML')
+
+                product_price = ""
+                for char in product_pr:
+                    if (char == '.'):
+                        product_price = product_price + char
+                    elif char.isdigit():
+                        product_price = product_price + char
+                
+                product_price = round(float(product_price) * 0.6, 2)
+
+
+
                 newDictionary.update({ product_code : [product_name, product_price]})
 
         ######################################
@@ -69,7 +83,6 @@ def CheckProducts(URL):
             if key in oldDictionary:
                 
                 price_change = float(oldDictionary.get(key)[1]) - newDictionary.get(key)[1]
-                print("oldPrice: ", oldDictionary.get(key)[1] , "\n newPrice: ", newDictionary.get(key)[1], " \n Price change: ", price_change, " \n")
                 finalDictionary.update({key: [newDictionary.get(key)[0], newDictionary.get(key)[1], price_change] })
                 del oldDictionary[key]
                 del newDictionary[key]
