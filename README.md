@@ -6,7 +6,7 @@
 
 
 <div align="center">
-A python script that uses the Selenium and ChromeDriver module to crawl New Balance's outlet store website, Joe's, and checks for price changes (+/-) and new arrivals, as well as, removals amongst sneakers and clothing and exports them as a csv file.
+A python script that uses the Selenium and ChromeDriver module to crawl New Balance's outlet store website, Joe's, and checks for price changes and new arrivals, as well as, removals amongst sneakers and clothing and exports them as a .csv file.
 </div>
 
 ## 🍭 Characteristics
